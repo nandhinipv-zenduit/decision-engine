@@ -594,13 +594,13 @@ def enrich(
 ):
 
     # Build prompt
-prompt = PROMPT_TEMPLATE
-
-prompt = prompt.replace("{ticket_content}", message)
-prompt = prompt.replace("{kb_title}", kb_title)
-prompt = prompt.replace("{kb_solution_id}", kb_solution_id)
-prompt = prompt.replace("{kb_content}", kb_content)
-prompt = prompt.replace("{kb_score}", str(kb_score))
+	prompt = PROMPT_TEMPLATE
+	
+	prompt = prompt.replace("{ticket_content}", message)
+	prompt = prompt.replace("{kb_title}", kb_title)
+	prompt = prompt.replace("{kb_solution_id}", kb_solution_id)
+	prompt = prompt.replace("{kb_content}", kb_content)
+	prompt = prompt.replace("{kb_score}", str(kb_score))
 
     # Call OpenAI
     response = client.responses.create(
