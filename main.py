@@ -468,7 +468,7 @@ There are some business rules that you need to keep in mind and check if these a
 1. Determine whether or not this is a junk email. If the sender's email ends with @gmail.com, there is a high probability it is a spam email. To check whether or not it is a spam email, read through the contents and check it's relevance with the company. To provide a brief context GoFleet and Zenduit provide trackers (as seen from options under Hardware Associated list) to track fleet logistics. Now an email directed to this company specifically to this service desk department will have enquiries about hardware or processes laid in the Hardware Associated and Classification parameters. 
 
 Additionally, It also becomes apparent from comparing the parameter options for classification and hardware associated whether the sender's email is junk or not. If determined as junk, populate the following values as shown in json. The values provided needs to be as is. For other fields leave them empty except the ones that have instructions within () on what needs to be provided as a reponse.
-{
+{{
 "priority":"Low :: Low Impact Other",
 "reason_priority":"Email appears promotional or unrelated to fleet tracking services and does not require operational attention.",
 "classification":"Junk Notifications :: Junk Mail",
@@ -492,7 +492,7 @@ Additionally, It also becomes apparent from comparing the parameter options for 
 "ai_classifications":"",
 "ai_hardware_associated":"",
 "ai_next_steps":""
-}
+}}
 Stop processing.
 ------------------------------------------------------------
 
@@ -522,7 +522,7 @@ Similarly for other values in JSON this needs to be followed.
 
 Return minified JSON:
 
-{
+{{
 "priority":"",
 "reason_priority":"",
 "classification":"",
@@ -546,7 +546,7 @@ Return minified JSON:
 "ai_classifications":"True",
 "ai_hardware_associated":"",
 "ai_next_steps":""
-}
+}}
 If uncertain, select the closest "Other" option within the correct severity or category tier.
 FINAL OUTPUT RULES
 
@@ -564,7 +564,7 @@ If a value is not applicable return an empty string "" or 0 depending on the fie
 
 Return minified JSON in one line.
 
-The first character must be {  
+The first character must be { 
 The last character must be }
 """
 
