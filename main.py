@@ -20,7 +20,10 @@ client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 # ==============================
 
 PROMPT_TEMPLATE = """
-You are going to be provided information that will be helpful context in deciding values for parameters I am looking to populate. Pick the closest match from the list of options for each of these parameters and respond in JSON. There may be instances where there is not enough information to decide in which case there are options available with Others reasons in each category. Try to avoid selecting None.
+You are going to be provided information that will be helpful context in deciding values for parameters I am looking to populate. 
+TICKET CONTENT:
+{ticket_content}
+Pick the closest match from the list of options for each of these parameters and respond in JSON. There may be instances where there is not enough information to decide in which case there are options available with Others reasons in each category. Try to avoid selecting None.
 
 
 **keyword matching should be case-insensitive and across the full ticket content.
@@ -591,13 +594,13 @@ def enrich(
 ):
 
     # Build prompt
-    prompt = PROMPT_TEMPLATE.format(
-        ticket_content=message,
-        kb_title=kb_title,
-        kb_solution_id=kb_solution_id,
-        kb_content=kb_content,
-        kb_score=kb_score
-    )
+prompt = PROMPT_TEMPLATE
+
+prompt = prompt.replace("{ticket_content}", message)
+prompt = prompt.replace("{kb_title}", kb_title)
+prompt = prompt.replace("{kb_solution_id}", kb_solution_id)
+prompt = prompt.replace("{kb_content}", kb_content)
+prompt = prompt.replace("{kb_score}", str(kb_score))
 
     # Call OpenAI
     response = client.responses.create(
