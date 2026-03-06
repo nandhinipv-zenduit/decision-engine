@@ -628,10 +628,10 @@ def enrich(
 
 # Normalize values
     if isinstance(kb_gap, bool):
-    	kb_gap = "Yes" if kb_gap else "No"
+        kb_gap = "Yes" if kb_gap else "No"
 
     if isinstance(triage_required, bool):
-    	triage_required = "Yes" if triage_required else "No"
+        triage_required = "Yes" if triage_required else "No"
     # Extract fields
     priority = ai_result.get("priority")
     classification = ai_result.get("classification")
