@@ -610,7 +610,9 @@ def enrich(
         input=prompt
     )
 
-    ai_text = response.output_text
+    ai_text = response.output[0].content[0].text
+    print("RAW AI OUTPUT:")
+    print(ai_text)
 
     # Convert JSON string → dictionary
     ai_result = json.loads(ai_text)
