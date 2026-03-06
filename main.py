@@ -594,8 +594,9 @@ def enrich(
 ):
 
     # Build prompt
+# Build prompt
     prompt = PROMPT_TEMPLATE
-	
+
     prompt = prompt.replace("{ticket_content}", message)
     prompt = prompt.replace("{kb_title}", kb_title)
     prompt = prompt.replace("{kb_solution_id}", kb_solution_id)
