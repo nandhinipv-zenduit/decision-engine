@@ -3,6 +3,7 @@ import psycopg2
 import os
 import json
 from openai import OpenAI
+import re
 
 app = FastAPI()
 
@@ -615,8 +616,22 @@ def enrich(
     print(ai_text)
 
     # Convert JSON string → dictionary
-    ai_result = json.loads(ai_text)
+    try:
+    	json_text = re.search(r"\{.*\}", ai_text, re.DOTALL).group()
+    	ai_result = json.loads(json_text)
+    except Exception as e:
+    	print("JSON PARSE ERROR")
+    	print(ai_text)
+    	raise e
+    kb_gap = ai_result.get("kb_gap")
+	triage_required = ai_result.get("triage_required")
 
+# Normalize values
+	if isinstance(kb_gap, bool):
+    	kb_gap = "Yes" if kb_gap else "No"
+
+	if isinstance(triage_required, bool):
+    	triage_required = "Yes" if triage_required else "No"
     # Extract fields
     priority = ai_result.get("priority")
     classification = ai_result.get("classification")
